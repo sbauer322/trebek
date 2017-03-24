@@ -30,6 +30,11 @@
   (println "logging: " x)
   x)
 
+(defn process-hit
+  [hit]
+  (tap-log hit)
+  (conj (select-keys hit [:_id]) (:_source hit)))
+
 (defn get-question
   []
   ;; To generate a random question: `http://stackoverflow.com/questions/25887850/random-document-in-elasticsearch`
@@ -43,5 +48,5 @@
                  :hits
                  ;tap-log
                  )
-        result (mapv #(get % :_source) hits)]
-    result))
+        results (mapv #(process-hit %) hits)]
+    results))

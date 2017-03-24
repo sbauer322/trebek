@@ -63,11 +63,19 @@ Needs to:
 
 - [x] remove wrapping single quote from values of question
 - [x] shape into format acceptable to ES Bulk API
-- [ ] strip out links but keep text describing contents
-- [ ] line breaks in question (e.g., see question with "It is agreed that there are...only two solids, the pyramid and")
+- [ ] strip out links but keep text describing contents (start with `<a href=`)
+- [ ] line breaks in question (e.g., see question with "It is agreed that there are...only two solids, the pyramid and") (`<br />`)
+- [ ] single quotes are escaped (e.g., see `Harry Potter and the Sorceror\'s Stone`)
+- [ ] italics `<i> and </i>`
 
 ```
 cat ./stream-to-es-test.json | jq --compact-output 'map({index: {_index: "trivia", _type: "jeopardy"}}, {category, air_date, question, value, answer, round, show_number, question: .question | .[1:-1]}) | .[]' > output.json
+```
+
+Should take care of `<br />` and `\'`:
+
+```
+map({index: {_index: "trivia", _type: "jeopardy"}}, {category, air_date, question, value, answer, round, show_number, question: .question | .[1:-1] | gsub("<br />"; "\n") | gsub("\\'"; "'")}) | .[]
 ```
 
 To send file to ES via Bulk API:

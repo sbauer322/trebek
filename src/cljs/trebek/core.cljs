@@ -11,18 +11,17 @@
 
 (defn home-page []
   [:div
-   [:div#header
-    [:h2#title "Welcome to trebek"]
-    [:div#navbar
-     [:a {:href "/"} "Home"] 
-     [:a {:href "/about"} "About"]]]
+   [:nav#navbar
+    [:ul.navbar
+     [:li [:a {:href "/"} "Trebek"]]
+     [:li [:a {:href "/about"} "About"]]]]
    [:div#body
     [:div#qa.play
      (play/question)
      (play/answer)
      (play/nav)]]
    [:div#footer
-    [:p "This is a footer."]]])
+    [:p ""]]])
 
 (defn about-page []
   [:div [:h2 "About trebek"]
@@ -45,7 +44,7 @@
 
 (defn mount-root []
   (reagent/render [current-page] (.getElementById js/document "app"))
-  ;; Figure out how to get the questions to populate on load.
+  ;; Populate questions on load.
   (a/retrieve-question-set))
 
 (defn init! []

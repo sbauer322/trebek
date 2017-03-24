@@ -14,6 +14,7 @@ Immediate:
   - [ ] CSS all the things... remember progressive enhancement
   - [ ] Find graphics/icons/fonts
   - [ ] Wire up navigation buttons
+  - [ ] Add keybindings for prevous, next, and reveal (i.e., `<-, ->, and enter`)
 - [ ] Build out static content
   - [ ] Add About page content
   - [ ] Add Donate page content
@@ -63,3 +64,9 @@ Addresses:
 Website - localhost:3000
 Elasticsearch - localhost:9200
 Elasticsearch-head - localhost:9100
+
+# Misc links
+
+- Super userful regarding flexbox `https://css-tricks.com/snippets/css/a-guide-to-flexbox/`
+- Reagent tutorial `http://lotabout.me/orgwiki/reagent.html`
+- js interop which i constantly forget `http://www.spacjer.com/blog/2014/09/12/clojurescript-javascript-interop/`

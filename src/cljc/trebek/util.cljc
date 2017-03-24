@@ -1,6 +1,5 @@
 (ns trebek.util)
 
-(defn foo-cljc [x]
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+#?(:cljs
+   (defn by-id [id]
+     (.getElementById js/document id)))

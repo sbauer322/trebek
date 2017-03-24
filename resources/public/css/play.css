@@ -2,12 +2,48 @@
 
 .heading {}
 
-.text {}
-
-.info {}
-
-#answer {}
+#answer {
+    visibility: hidden;
+}
 
 #learn {}
 
-#nav {}
+.play-nav-container {
+    width: auto;
+    height: auto;
+}
+
+.play-nav-item {
+    width: auto;
+    height: auto;
+}
+
+.info-container {
+    height: auto;
+    flex-direction: column;
+    border-left: 1px solid white;
+    padding-left: 10px;
+}
+
+.info-item {
+    width: auto;
+    height: auto;
+}
+
+#question-text {
+    min-height: 125px;
+}
+
+.category-item {
+    width: auto;
+    height: auto;
+    text-align: left;
+    hyphens: auto;
+}
+
+.category-container {
+    width: auto;
+    height: 100px;
+    justify-content: flex-start;
+    align-items: center;
+}

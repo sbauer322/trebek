@@ -4,36 +4,49 @@
             [cljs.core.async :refer [<!]])
     (:require-macros [cljs.core.async.macros :refer [go]]))
 
-(def app (atom {:play
-                {:set [{:question "Loading..."
-                        :answer "Loading..."}]
-                 :i 0}
-                 :current {}
+(def app (atom {:play {
+                       :questions [{:question "Loading..."
+                                    :answer "Loading..."}]
+                       :index 0}
                 }))
+
+(defn index
+  []
+  (get-in @app [:play :index]))
+
+(defn questions
+  []
+  (get-in @app [:play :questions]))
+
+(defn next-questions
+  "First question in vector is most recent."
+  []
+  (second (split-at (index) (questions))))
+
+(defn previous-questions
+  "Last question in vector is most recent."
+  []
+  (first (split-at (index) (questions))))
 
 (defn current-question
   []
-  (get-in @app [:play :current]))
+  ((questions) (index)))    
 
-(defn- update-current
+(defn retrieve-question-set
   []
-  (let [i (get-in @app [:play :i])
-        questions (get-in @app [:play :set])]
-    (swap! app assoc-in [:play :current] (get questions i))))
-
-(defn retrieve-question-set []
-  (go (let [response (<! (http/get "http://localhost:3000/api/v1.0/question/2"
-                                   ))]
+  (go (let [response (<! (http/get "http://localhost:3000/api/v1.0/question/2"))]
         ;; TODO: Look into a cleaner way to update the atom.
-        (swap! app assoc-in [:play :set] (:body response))
-        (swap! app assoc-in [:play :i] 0)
-        (update-current))))
+        (swap! app update-in [:play :questions] #(into % (:body response)))
+        (swap! app update-in [:play :index] inc))))
 
 (defn next-question
   []
-  (let [i (get-in @app [:play :i])]
-    (if (<= i 8)
-      (do
-        (swap! app update-in [:play :i] inc)
-        (update-current))
+  (let [i (count (next-questions))]
+    (if (<= 8 i)
+      (swap! app update-in [:play :index] inc)
       (retrieve-question-set))))
+
+(defn previous-question
+  []
+  (when-not (empty? (previous-questions))
+    (swap! app update-in [:play :index] dec)))

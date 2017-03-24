@@ -1,17 +1,70 @@
-.body-container {
-  font-family: 'Helvetica Neue', Verdana, Helvetica, Arial, sans-serif;
-  max-width: 600px;
-  margin: 0 auto;
-  padding-top: 72px;
-  -webkit-font-smoothing: antialiased;
-  font-size: 1.125em;
-  color: #333;
-  line-height: 1.5em;
+/* As hex codes */
+
+.color-primary-0 { color: #3F495A }	/* Main Primary color - background */
+.color-primary-1 { color: #9DABC5 }
+.color-primary-2 { color: #5A6780 }
+.color-primary-3 { color: #1E232B }
+.color-primary-4 { color: #0E1218 }
+
+.color-secondary-1-0 { color: #46445E }	/* Main Secondary color (1) */
+.color-secondary-1-1 { color: #A7A3CA }
+.color-secondary-1-2 { color: #646086 }
+.color-secondary-1-3 { color: #22202D }
+.color-secondary-1-4 { color: #100F19 }
+
+.color-secondary-2-0 { color: #385053 }	/* Main Secondary color (2) */
+.color-secondary-2-1 { color: #93B7BC }
+.color-secondary-2-2 { color: #507176 }
+.color-secondary-2-3 { color: #1B2627 }
+.color-secondary-2-4 { color: #0C1516 }
+
+
+
+/* As RGBa codes */
+
+.rgba-primary-0 { color: rgba( 63, 73, 90,1) }	/* Main Primary color */
+.rgba-primary-1 { color: rgba(157,171,197,1) }
+.rgba-primary-2 { color: rgba( 90,103,128,1) }
+.rgba-primary-3 { color: rgba( 30, 35, 43,1) }
+.rgba-primary-4 { color: rgba( 14, 18, 24,1) }
+
+.rgba-secondary-1-0 { color: rgba( 70, 68, 94,1) }	/* Main Secondary color (1) */
+.rgba-secondary-1-1 { color: rgba(167,163,202,1) }
+.rgba-secondary-1-2 { color: rgba(100, 96,134,1) }
+.rgba-secondary-1-3 { color: rgba( 34, 32, 45,1) }
+.rgba-secondary-1-4 { color: rgba( 16, 15, 25,1) }
+
+.rgba-secondary-2-0 { color: rgba( 56, 80, 83,1) }	/* Main Secondary color (2) */
+.rgba-secondary-2-1 { color: rgba(147,183,188,1) }
+.rgba-secondary-2-2 { color: rgba( 80,113,118,1) }
+.rgba-secondary-2-3 { color: rgba( 27, 38, 39,1) }
+.rgba-secondary-2-4 { color: rgba( 12, 21, 22,1) }
+
+#app {
+    border-radius: 1.25em;
+    background: #646086;
 }
 
-h1, h2, h3 {
-  color: #000;
+.body-container {
+    background-color: #9DABC5;
+    font-family: 'Helvetica Neue', Verdana, Helvetica, Arial, sans-serif;
+    max-width: 960px;
+    margin: 0 auto;
+    padding-top: 72px;
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.25em;
+    color: #333;
+    line-height: 1.5em;
 }
+
+#body {
+    margin: 25px;
+}
+
+h1, h2, h3, p, li{
+  color: white;
+}
+
 h1 {
   font-size: 2.5em
 }
@@ -31,4 +84,28 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+.flex-container {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+  
+    -webkit-flex-flow: row wrap;
+    justify-content: space-around;
+}
+
+.flex-item {
+    padding: 0px;
+    width: 100px;
+    height: 20px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: center;
 }

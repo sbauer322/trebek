@@ -8,6 +8,12 @@
             [trebek.es :refer [get-question]]
             [config.core :refer [env]]))
 
+(def dev-css-styles
+  (include-css
+   "/css/site.css"
+   "/css/play.css"
+   "/css/navigation.css"))
+
 (def mount-target
   [:div#app
       [:h3 "ClojureScript has not been compiled!"]
@@ -21,8 +27,8 @@
    [:meta {:name "viewport"
            :content "width=device-width, initial-scale=1"}]
    (if (env :dev)
-     (include-css "/css/site.css" "/css/play.css"))
-     (include-css "/css/site.min.css")])
+     dev-css-styles
+     (include-css "/css/site.min.css"))])
 
 (defn loading-page []
   (html5
@@ -49,7 +55,7 @@
    (context "/api/v1.0" []
             (GET "/question/:id" [id]
                  ;; Need to figure out better response rendering?
-                 (tap-log (r/header (response (get-question)) "Content-Type" "application/json"))))))
+                 (tap-log (response (get-question)))))))
 
 (defroutes site-routes
   (GET "/" [] (loading-page))
