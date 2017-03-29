@@ -5,7 +5,7 @@
             [ring.util.response :as r :refer [response]]
             [hiccup.page :refer [include-js include-css html5]]
             [trebek.middleware :refer [wrap-middleware]]
-            [trebek.es :refer [get-question]]
+            [trebek.es :as es]
             [config.core :refer [env]]))
 
 (def dev-css-styles
@@ -55,7 +55,11 @@
    (context "/api/v1.0" []
             (GET "/question/:id" [id]
                  ;; Need to figure out better response rendering?
-                 (tap-log (response (get-question)))))))
+                 (tap-log (response (es/random))))
+            (GET "/search" [q from]
+                 (tap-log q)
+                 ;; Need to figure out better response rendering?
+                 (tap-log (response (es/search q from)))))))
 
 (defroutes site-routes
   (GET "/" [] (loading-page))

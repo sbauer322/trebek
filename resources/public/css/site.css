@@ -109,3 +109,7 @@ a:hover {
     margin-bottom: 0px;
     text-align: center;
 }
+
+.button {
+    margin: 10px;
+}

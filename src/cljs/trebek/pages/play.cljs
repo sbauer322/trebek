@@ -6,23 +6,29 @@
 (defn toggle-answer [state]
   (aset (u/by-id "answer") "style" "visibility" state))
 
-(defn reset-play []
+(defn reset-answer []
   (toggle-answer "hidden"))
 
+(defn reset-state []
+  (reset-answer)
+  (a/reset-index)
+  (a/reset-questions)
+  (a/next-question))
+
 (defn reveal-answer []
-   [:input.flex-item.play-nav-item {:type "button" :value "Reveal"
+   [:input.flex-item.play-nav-item.button {:type "button" :value "Reveal"
             :on-click #(toggle-answer "visible")}])
 
 (defn next-button []
-  [:input.flex-item.play-nav-item {:type "button" :value "Next"
+  [:input.flex-item.play-nav-item.button {:type "button" :value "Next"
            :on-click (fn []
-                       (reset-play)
+                       (reset-answer)
                        (a/next-question))}])
 
 (defn previous-button []
-  [:input.flex-item.play-nav-item {:type "button" :value "Previous"
+  [:input.flex-item.play-nav-item.button {:type "button" :value "Previous"
            :on-click (fn []
-                       (reset-play)
+                       (reset-answer)
                        (a/previous-question))}])
 
 (defn user-correct []
@@ -41,6 +47,15 @@
 (defn info [s]
   [:li.flex-item.info-item s])
 
+(defn search []
+  [:div
+   [:input {:type "search" :placeholder "Leave blank for random questions"
+            :on-change (fn [evt]
+                         (let [value (-> evt .-target .-value)]
+                           (a/update-search value)))}]
+   [:input {:type "button" :value "Search"
+             :on-click #(reset-state)}]])
+
 (defn question []
   [:div#question
    [:div.heading
@@ -51,7 +66,7 @@
       (info (:round (a/current-question)))
       (info (:value (a/current-question)))
       (info (:air_date (a/current-question)))
-      (info (str "#" (:show_number (a/current-question))))]]]
+      (info (:show_number (a/current-question)))]]]
    [:div#question-text
     [:p (:question (a/current-question))]]])
 
@@ -65,7 +80,11 @@
      [:p (:answer (a/current-question))]]])
 
 (defn nav []
-  [:div#play-nav.flex-container.play-nav-container
-   (previous-button)
-   (reveal-answer)
-   (next-button)])
+  [:div
+   [:div#play-nav.flex-container.play-nav-container
+    [:p (when (a/out-of-results?)
+          "Out of results. Please search again.")]]
+   [:div#play-nav.flex-container.play-nav-container
+    (previous-button)
+    (reveal-answer)
+    (next-button)]])

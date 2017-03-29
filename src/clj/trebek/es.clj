@@ -9,44 +9,53 @@
   []
   (System/currentTimeMillis))
 
-(defn sample-search-body
-  []
-  (str "{
-    \"query\": {
-        \"function_score\": {
-         \"functions\": [
-            {
-               \"random_score\": {
-                  \"seed\": \"" (rando-seed) "\"
-               }
-            }
-         ]
-      }
-    }
-   }"))
+(defn simple-search
+  [s]
+  (cheshire/generate-string
+   {:query
+    {:simple_query_string
+     {:query s
+      :fields ["category" "question"]}}}))
 
-(defn tap-log
-  [x]
-  (println "logging: " x)
-  x)
+(defn random-search
+  []
+  (cheshire/generate-string
+   {:query
+    {:function_score
+     {:functions [
+                  {:random_score
+                   {:seed (str (rando-seed))}}]}}}))
 
 (defn process-hit
   [hit]
-  (tap-log hit)
   (conj (select-keys hit [:_id]) (:_source hit)))
 
-(defn get-question
+(defn random
   []
   ;; To generate a random question: `http://stackoverflow.com/questions/25887850/random-document-in-elasticsearch`
   (let [hits (-> (client/post (str es-address "trivia/jeopardy/_search")
                               {:accept :json
                                :content-type :json
-                               :body (sample-search-body)})
+                               :body (random-search)})
                  :body
                  (cheshire/parse-string true)
                  :hits
-                 :hits
-                 ;tap-log
-                 )
+                 :hits)
         results (mapv #(process-hit %) hits)]
     results))
+
+(defn search
+  ([q]
+  (search q 0))
+  ([q from]
+   (println (str "query: " "   and from: " from))
+   (let [hits (-> (client/post (str es-address "trivia/jeopardy/_search?size=10" "&from=" from)
+                               {:accept :json
+                                :content-type :json
+                                :body (simple-search q)})
+                  :body
+                  (cheshire/parse-string true)
+                  :hits
+                  :hits)
+         results (mapv #(process-hit %) hits)]
+     results)))

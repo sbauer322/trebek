@@ -13,7 +13,7 @@ Immediate:
 - [ ] Main page design / UI / UX
   - [ ] CSS all the things... remember progressive enhancement
   - [ ] Find graphics/icons/fonts
-  - [ ] Wire up navigation buttons
+  - [x] Wire up navigation buttons
   - [ ] Add keybindings for prevous, next, and reveal (i.e., `<-, ->, and enter`)
 - [ ] Build out static content
   - [ ] Add About page content

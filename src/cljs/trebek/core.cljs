@@ -17,6 +17,7 @@
      [:li [:a {:href "/about"} "About"]]]]
    [:div#body
     [:div#qa.play
+     (play/search)
      (play/question)
      (play/answer)
      (play/nav)]]
