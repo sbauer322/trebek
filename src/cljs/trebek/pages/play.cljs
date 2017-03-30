@@ -89,7 +89,7 @@
   [:div
    [:div.flex-container.play-nav-container
     [:p (when (a/out-of-results?)
-          "Out of results. Please search again.")]]
+          "Out of questions. Please search again.")]]
    [:div#play-nav.flex-container.play-nav-container
     (previous-button)
     (reveal-button)
