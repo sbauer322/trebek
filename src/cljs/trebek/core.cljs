@@ -9,24 +9,34 @@
 ;; -------------------------
 ;; Views
 
-(defn home-page []
-  [:div
-   [:nav#navbar
+(defn header []
+  [:nav#navbar
     [:ul.navbar
      [:li [:a {:href "/"} "Trebek"]]
-     [:li [:a {:href "/about"} "About"]]]]
+     [:li [:a {:href "/about"} "About"]]
+     [:li [:a {:href "https://www.paypal.me/sbauer322"} "Donate"]]]])
+
+(defn footer []
+  [:div#footer
+    [:p ""]])
+
+(defn home-page []
+  [:div
+   (header)
    [:div#body
     [:div#qa.play
      (play/search)
      (play/question)
      (play/answer)
      (play/nav)]]
-   [:div#footer
-    [:p ""]]])
+   (footer)])
 
 (defn about-page []
-  [:div [:h2 "About trebek"]
-   [:div [:a {:href "/"} "go to the home page"]]])
+  [:div
+   (header)
+   [:h2 "About trebek"]
+   [:div [:a {:href "/"} "go to the home page"]]
+   (footer)])
 
 (defn current-page []
   [:div [(session/get :current-page)]])
