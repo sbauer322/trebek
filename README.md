@@ -11,13 +11,13 @@ Immediate:
   - [ ] Will need running list of already visited question ids
   - [ ] Look into sessions for keeping track of who is who
 - [ ] Main page design / UI / UX
-  - [ ] CSS all the things... remember progressive enhancement
-  - [ ] Find graphics/icons/fonts
+  - [x] CSS all the things... remember progressive enhancement
+  - [x] Find graphics/icons/fonts
   - [x] Wire up navigation buttons
   - [ ] Add keybindings for prevous, next, and reveal (i.e., `<-, ->, and enter`)
 - [ ] Build out static content
-  - [ ] Add About page content
-  - [ ] Add Donate page content
+  - [x] Add About page content
+  - [x] Add Donate page content
   - [ ] Add social media links instead of Discuss page/forum
 
 After That:

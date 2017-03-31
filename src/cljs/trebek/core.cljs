@@ -34,8 +34,17 @@
 (defn about-page []
   [:div
    (header)
-   [:h2 "About trebek"]
-   [:div [:a {:href "/"} "go to the home page"]]
+   [:div#body
+    [:p "Trebek is here to help you study and hone your Jeopardy knowledge. A powerful search engine lets you test yourself against categories and relevant questions. Alternatively, if you leave the search field blank then Trebek will provide you with a random stream of questions."]
+    [:p "All question data has been gathered from J-Archive, a fantastic resource."]
+    [:p "There are a number of features still to be implemented for Trebek. Highlights include:"]
+    [:ul
+     [:li "User accounts"]
+     [:li "Score keeping"]
+     [:li "Analysis to help identify weak areas"]
+     [:li "Links to corresponding Wikipedia pages for answers"]
+     [:li "Shareable user-defined lists of questions"]]
+    [:p "If you find Trebek useful, please consider donating. This site is ad-free to provide a pleasant experience yet there are still server to pay for. Even a small donation goes a long way!"]]
    (footer)])
 
 (defn current-page []
