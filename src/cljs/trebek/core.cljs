@@ -44,7 +44,7 @@
      [:li "Analysis to help identify weak areas"]
      [:li "Links to corresponding Wikipedia pages for answers"]
      [:li "Shareable user-defined lists of questions"]]
-    [:p "If you find Trebek useful, please consider donating. This site is ad-free to provide a pleasant experience yet there are still server to pay for. Even a small donation goes a long way!"]]
+    [:p "If you find Trebek useful, please consider donating. This site is ad-free to provide a pleasant experience yet there are still servers to pay for. Even a small donation goes a long way!"]]
    (footer)])
 
 (defn current-page []

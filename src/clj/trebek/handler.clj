@@ -14,6 +14,12 @@
    "/css/play.css"
    "/css/navigation.css"))
 
+(def prod-css-styles
+  (include-css
+   "/css/site.min.css"
+   "/css/play.min.css"
+   "/css/navigation.min.css"))
+
 (def mount-target
   [:div#app
       [:h3 "ClojureScript has not been compiled!"]
@@ -28,7 +34,7 @@
            :content "width=device-width, initial-scale=1"}]
    (if (env :dev)
      dev-css-styles
-     (include-css "/css/site.min.css"))])
+     prod-css-styles)])
 
 (defn loading-page []
   (html5

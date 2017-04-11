@@ -48,7 +48,9 @@
 
   :minify-assets
   {:assets
-   {"resources/public/css/site.min.css" "resources/public/css/site.css"}}
+   {"resources/public/css/site.min.css" "resources/public/css/site.css"
+    "resources/public/css/play.min.css" "resources/public/css/play.css"
+    "resources/public/css/navigation.min.css" "resources/public/css/navigation.css"}}
 
   :cljsbuild
   {:builds {:min
@@ -68,9 +70,6 @@
               :source-map true
               :optimizations :none
               :pretty-print  true}}
-
-
-
             }
    }
 

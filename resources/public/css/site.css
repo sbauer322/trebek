@@ -51,7 +51,6 @@
     margin: 0 auto;
     -webkit-font-smoothing: antialiased;
     font-size: 1.25em;
-    color: #333;
     line-height: 1.5em;
 }
 
@@ -59,7 +58,7 @@
     margin: 25px;
 }
 
-h1, h2, h3, p, li{
+h1, h2, h3, p, li {
   color: white;
 }
 
