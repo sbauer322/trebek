@@ -1,9 +1,15 @@
 (ns trebek.es
-  (:require [clj-http.client :as client]
+  (:require [config.core :refer [env]]
+            [clj-http.client :as client]
             [cheshire.core :as cheshire]))
 
-(def es-address
-  "http://localhost:9200/")
+(defn es-address
+  []
+  (:database-url env))
+
+(defn search-size
+  []
+  (:search-size env "10"))
 
 (defn rando-seed
   []
@@ -33,7 +39,7 @@
 (defn random
   []
   ;; To generate a random question: `http://stackoverflow.com/questions/25887850/random-document-in-elasticsearch`
-  (let [hits (-> (client/post (str es-address "trivia/jeopardy/_search")
+  (let [hits (-> (client/post (str (es-address) "trivia/jeopardy/_search?size=" (search-size))
                               {:accept :json
                                :content-type :json
                                :body (random-search)})
@@ -48,8 +54,7 @@
   ([q]
   (search q 0))
   ([q from]
-   (println (str "query: " "   and from: " from))
-   (let [hits (-> (client/post (str es-address "trivia/jeopardy/_search?size=10" "&from=" from)
+   (let [hits (-> (client/post (str (es-address) "trivia/jeopardy/_search?size=" (search-size) "&from=" from)
                                {:accept :json
                                 :content-type :json
                                 :body (simple-search q)})

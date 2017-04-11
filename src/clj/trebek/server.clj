@@ -15,7 +15,6 @@
     (reset! server nil)))
 
 (defn -main [& args]
-  (let [port (Integer/parseInt (or (env :port) "3000"))]
+  (let [port (Integer/parseInt (:port env "3000"))]
     (run-server #'app {:port port})
-    (println "Server started!")))
-    ; (run-jetty app {:port port :join? false})))
+    (println "Server started at port " port)))

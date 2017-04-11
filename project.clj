@@ -5,7 +5,6 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 ; [ring-server "0.4.0"]
                  [http-kit "2.2.0"]
                  [reagent "0.6.0"]
                  [reagent-utils "0.2.0"]
@@ -85,7 +84,17 @@
 
 
 
-  :profiles {:dev {:repl-options {:init-ns trebek.repl
+  :profiles {:uberjar {:hooks [minify-assets.plugin/hooks]
+                       :source-paths ["env/prod/clj"]
+                       :resource-paths ["env/prod/resources"]
+                       :prep-tasks ["compile" ["cljsbuild" "once" "min"]]
+                       :aot :all
+                       :omit-source true}
+             
+             :dev [:project/dev :profiles/dev]
+             :test [:project/dev :project/test :profiles/test]
+
+             :project/dev {:repl-options {:init-ns trebek.repl
                                   :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}
 
                    :dependencies [[ring/ring-mock "0.3.0"]
@@ -99,17 +108,12 @@
                                   ]
 
                    :source-paths ["env/dev/clj"]
+                   :resource-paths ["env/dev/resources"]
                    :plugins [[lein-figwheel "0.5.8"]
                              ]
 
                    :injections [(require 'pjstadig.humane-test-output)
-                                (pjstadig.humane-test-output/activate!)]
-
-                   :env {:dev true}}
-
-             :uberjar {:hooks [minify-assets.plugin/hooks]
-                       :source-paths ["env/prod/clj"]
-                       :prep-tasks ["compile" ["cljsbuild" "once" "min"]]
-                       :env {:production true}
-                       :aot :all
-                       :omit-source true}})
+                                (pjstadig.humane-test-output/activate!)]}
+             :project/test {:resource-paths ["env/dev/resources" "env/test/resources"]}
+             :profiles/dev {}
+             :profiles/test {}})

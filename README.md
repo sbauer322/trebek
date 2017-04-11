@@ -32,11 +32,22 @@ After That:
 
 ## Development
 
+Configuration is stored in `env/dev/resources/config.edn` and `env/dev/prod/config.edn` for the respective profiles. Those config files are tracked in source control... all sensitive config should be untracked and located elsewhere. See `yogthos/config` and `environ` for more information. With an uberjar, an additional config file can be passed in via something like the following snippet for the Java command: `-Dconfig="config.edn"`. This will merge and overwrite the default config values.
+
 Start web application:
 
 ```
 lein figwheel
 lein run
+; lein with-profile dev run
+```
+
+Or, for production:
+
+```
+lein uberjar
+java -jar ./target/trebek.jar
+; java -Dconfig="config.edn" -jar ./target/trebek.jar
 ```
 
 Start elasticsearch:
@@ -59,11 +70,24 @@ Will need grunt-cli: `npm install -g grunt-cli`
 Have to disable CORS. See github
 
 
-Addresses:
+Standard Addresses:
 
 Website - localhost:3000
 Elasticsearch - localhost:9200
 Elasticsearch-head - localhost:9100
+
+## Production
+
+Provide a `config.edn` file with at least the following parameters for the instance:
+
+- database url and port (e.g., http://localhost:9200)
+- server port
+
+```
+lein uberjar
+; lein with-profile dev uberjar
+java -Dconfig="config.edn" -jar ./target/trebek.jar
+```
 
 # Misc links
 

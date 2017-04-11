@@ -61,11 +61,10 @@
    (context "/api/v1.0" []
             (GET "/question/:id" [id]
                  ;; Need to figure out better response rendering?
-                 (tap-log (response (es/random))))
+                 (response (es/random)))
             (GET "/search" [q from]
-                 (tap-log q)
                  ;; Need to figure out better response rendering?
-                 (tap-log (response (es/search q from)))))))
+                 (response (es/search q from))))))
 
 (defroutes site-routes
   (GET "/" [] (loading-page))

@@ -1,0 +1,4 @@
+{:production true
+ :database-url nil
+ :port "3000"
+ :search-size "10"}
