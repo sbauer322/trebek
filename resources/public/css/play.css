@@ -22,7 +22,7 @@
     height: auto;
 }
 
-.info-container {
+.minor-container {
     flex: 1 1 auto;
     width: 20%;
     height: auto;
@@ -31,7 +31,7 @@
     padding-left: 10px;
 }
 
-.info-item {
+.minor-item {
     flex-wrap: nowrap;
     width: auto;
     height: auto;
@@ -41,14 +41,14 @@
     min-height: 125px;
 }
 
-.category-item {
+.major-item {
     width: auto;
     height: auto;
     text-align: left;
     hyphens: auto;
 }
 
-.category-container {
+.major-container {
     flex: 4 4 auto;
     height: 100px;
     width: 52%;
@@ -63,7 +63,6 @@
     margin-right: 0px;
     margin-top: 0px;
     margin-bottom: 30px;
-    
 }
 
 .search-box {

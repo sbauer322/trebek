@@ -32,23 +32,23 @@
                        (a/previous-question))}])
 
 (defn user-correct []
-  [:div    
+  [:div.flex-item.minor-item
    [:input#uc {:type "button" :value "Got it right?"
                :on-click #(.log js/console "Stubbed!")}]])
 
 (defn answer-wrong []
-  [:div
+  [:div.flex-item.minor-item
    [:input#aw {:type "button" :value "Answer wrong?"
                :on-click #(.log js/console "Stubbed!")}]])
 
 (defn category [s]
-  [:li.flex-item.category-item s])
+  [:li.flex-item.major-item s])
 
 (defn info [s]
   (let [info (or
               (when (empty? s) "N/A")
               s)]
-    [:li.flex-item.info-item info]))
+    [:li.flex-item.minor-item info]))
 
 (defn search []
   [:div.flex-container.search
@@ -66,9 +66,9 @@
   [:div#question
    [:div.heading
     [:div.flex-container
-     [:ul.flex-container.category-container
+     [:ul.flex-container.major-container
       (category (:category (a/current-question)))]
-     [:ul.flex-container.info-container
+     [:ul.flex-container.minor-container
       (info (:round (a/current-question)))
       (info (:value (a/current-question)))
       (info (:air_date (a/current-question)))
@@ -77,13 +77,13 @@
     [:p (:question (a/current-question))]]])
 
 (defn answer []
-   [:div#answer
-    [:div.heading
-     ;; (user-correct)
-     ;;(answer-wrong)
-     ]
-    [:div.text
-     [:p (:answer (a/current-question))]]])
+   [:div#answer.flex-container
+    [:div.text.flex-container.major-container
+     [:p.flex-item.major-item (:answer (a/current-question))]]
+    [:div.misc.flex-container.minor-container
+     (user-correct)
+     (answer-wrong)
+    ]])
 
 (defn nav []
   [:div
