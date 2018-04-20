@@ -4,3 +4,5 @@ elasticsearch-5.2.1/*
 *~
 .#*
 *.log
+
+\.idea/

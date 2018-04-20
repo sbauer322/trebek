@@ -34,7 +34,8 @@
 (defn user-correct []
   [:div.flex-item.minor-item
    [:input#uc {:type "button" :value "Got it right?"
-               :on-click #(.log js/console "Stubbed!")}]])
+               :on-click (fn []
+                           (a/increment-number-correct))}]])
 
 (defn answer-wrong []
   [:div.flex-item.minor-item
@@ -81,8 +82,8 @@
     [:div.text.flex-container.major-container
      [:p.flex-item.major-item (:answer (a/current-question))]]
     [:div.misc.flex-container.minor-container
-     (user-correct)
-     (answer-wrong)
+    ;  (user-correct)
+    ;  (answer-wrong)
     ]])
 
 (defn nav []

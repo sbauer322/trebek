@@ -10,6 +10,7 @@
                        :index 0
                        :search ""
                        :out-of-results? false
+                       :number-correct 0
                        }}))
 
 (defn search
@@ -36,6 +37,14 @@
   []
   (swap! app assoc-in [:play :questions] [{:question ""
                                            :answer ""}]))
+
+(defn number-correct
+  []
+  (get-in @app [:play :number-correct]))
+
+(defn increment-number-correct
+  []
+  (swap! app update-in [:play :number-correct] inc))
 
 (defn next-questions
   "First question in vector is most recent."

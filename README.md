@@ -1,74 +1,54 @@
-## Things To Do
+# Trebek
 
-Immediate:
+Trebek is a web application to help you study and hone your Jeopardy knowledge. A powerful search engine lets you test yourself against categories and relevant questions. Alternatively, if you leave the search field blank then Trebek will provide you with a random stream of questions.
 
-- [x] Add data store
-- [x] Populate data store... maybe see `http://stackoverflow.com/questions/15936616/import-index-a-json-file-into-elasticsearch` and `http://stackoverflow.com/questions/25887850/random-document-in-elasticsearch`
-- [ ] Build initial API (just get at the moment (?))
-  - [ ] Look into Swagger
-- [x] Retrieve question and answer content from server to display on page
-- [ ] Keep score (start with running score per instance... no sign in yet)
-  - [ ] Will need running list of already visited question ids
-  - [ ] Look into sessions for keeping track of who is who
-- [ ] Main page design / UI / UX
-  - [x] CSS all the things... remember progressive enhancement
-  - [x] Find graphics/icons/fonts
-  - [x] Wire up navigation buttons
-  - [ ] Add keybindings for prevous, next, and reveal (i.e., `<-, ->, and enter`)
-- [ ] Build out static content
-  - [x] Add About page content
-  - [x] Add Donate page content
-  - [ ] Add social media links instead of Discuss page/forum
+Initially developed for my personal amusement, data was gathered from J-Archive, a fantastic resource. Currently, you will need to provide your own data, however. Do note that as long as your data is properly formated, Trebek can be used as a quiz-like application for pretty much anything.
 
-After That:
+There are a number of features that can be added to Trebek. Potential paths for additional development include:
+ - User accounts
+ - Score keeping
+ - Analysis to help identify weak areas
+ - Links to corresponding Wikipedia pages for answers
+ - Shareable user-defined lists of questions
+ - Keybindings to improve navigation
+ - Social media links
+ - Graph based exploration of data
+ - Reporting buttons (e.g., wrong answer, bug report)
+ - Redesigned UI
+ - Tagging of questions and answers by users
+ - Dataset Store
+ - Allow content to be submitted by users
 
-- Add log-in/credentials via OAuth (?)
-  - Switch random-question generation to user or session id?
-- Wire reporting buttons (e.g., wrong answer, report a bug)
-- Add linking to wikipedia articles based on answer contents (?)
-- Figure out how to make collapsible Learn section (UI)
-- Allow exploration of data (Elasticsearch / graphs?)
-- Build custom question/answer stacks? Make shareable via link?
+## Prerequisites
+
+You'll need the following installed in order to run Trebek:
+
+- Clojure and Leinigen
+- Elasticsearch 5.2.x
+- elasticsearch-head
+- npm
+- grunt
 
 ## Development
 
-Configuration is stored in `env/dev/resources/config.edn` and `env/dev/prod/config.edn` for the respective profiles. Those config files are tracked in source control... all sensitive config should be untracked and located elsewhere. See `yogthos/config` and `environ` for more information. With an uberjar, an additional config file can be passed in via something like the following snippet for the Java command: `-Dconfig="config.edn"`. This will merge and overwrite the default config values.
+Configuration is stored in `env/dev/resources/config.edn` and `env/dev/prod/config.edn` for the respective profiles. These config files are tracked in source control... all sensitive config should be untracked and located elsewhere. See `yogthos/config` and `environ` for more information. With an uberjar, an additional config file can be passed in via something like the following snippet for the Java command: `-Dconfig="config.edn"`. This will merge and overwrite the default config values.
 
-Start web application:
+First make sure elasticsearch (ES) is running, where ever and how ever they are located is up to you. If you were running one node on your local machine and not as a daemon, then something like `./elasticsearch-5.2.1/bin/elasticsearch` in the appropriate ES directory might suffice.
 
-```
-lein figwheel
-lein run
-; lein with-profile dev run
-```
+It would be prudent to feed ES your data at this point. See the section on Data Ingestion.
 
-Or, for production:
+If you installed elasticsearch-head then the following commands are of use:
 
 ```
-lein uberjar
-java -jar ./target/trebek.jar
-; java -Dconfig="config.edn" -jar ./target/trebek.jar
-```
-
-Start elasticsearch:
-
-```
-./elasticsearch-5.2.1/bin/elasticsearch
-```
-
-Web front end for elasticsearch - elasticsearch-head:
-
-```
-;; from trebek dir
 cd ../elasticsearch-head
 npm install
 grunt server
 open http://localhost:9100/
 ```
 
-Will need grunt-cli: `npm install -g grunt-cli`
-Have to disable CORS. See github
+Note: You will need grunt-cli: `npm install -g grunt-cli` and you may have to disable CORS. See their github repo for additional information.
 
+Finally, start the web application by running `lein figwheel` and `lein run` in two separate consoles. A certain profile can be selected like so for the dev profile `lein with-profile dev run`.
 
 Standard Addresses:
 
@@ -78,19 +58,28 @@ Elasticsearch-head - localhost:9100
 
 ## Production
 
-Provide a `config.edn` file with at least the following parameters for the instance:
+To run in production, you'll want to set up the ES nodes as necessary. At least two nodes in a cluster is advised... but I am not your mother so do what you want.
 
-- database url and port (e.g., http://localhost:9200)
-- server port
+Provide a `config.edn` file in the Trebek project directory containing at least the following parameters for the Trebek server instance:
+
+- ES database url and port (e.g., http://localhost:9200)
+- Server port for Trebek
+
+Run the following commands to build and launch Trebek.
 
 ```
 lein uberjar
-; lein with-profile dev uberjar
 java -Dconfig="config.edn" -jar ./target/trebek.jar
 ```
 
-# Misc links
+A certain profile can be selected like so for the dev profile `lein with-profile dev uberjar`.
 
-- Super userful regarding flexbox `https://css-tricks.com/snippets/css/a-guide-to-flexbox/`
+## Data Ingestion
+
+
+
+## Misc links
+
+- Super useful regarding flexbox `https://css-tricks.com/snippets/css/a-guide-to-flexbox/`
 - Reagent tutorial `http://lotabout.me/orgwiki/reagent.html`
 - js interop which i constantly forget `http://www.spacjer.com/blog/2014/09/12/clojurescript-javascript-interop/`
