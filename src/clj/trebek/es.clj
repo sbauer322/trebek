@@ -5,7 +5,9 @@
 
 (defn es-address
   []
-  (:database-url env))
+  (if (:production env)
+    (:BONSAI_URL env)
+    (:database-url env)))
 
 (defn search-size
   []
