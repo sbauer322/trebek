@@ -6,7 +6,7 @@
 (defn es-address
   []
   (if (:production env)
-    (:BONSAI_URL env)
+    (str (:bonsai-url env) ":" (:bonsai-port env))
     (:database-url env)))
 
 (defn search-size
