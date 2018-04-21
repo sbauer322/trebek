@@ -74,6 +74,10 @@ java -Dconfig="config.edn" -jar ./target/trebek.jar
 
 A certain profile can be selected like so for the dev profile `lein with-profile dev uberjar`.
 
+To deploy to Heroku, via the Heroku CLI: `git push heroku master`
+
+The ES url can be accessed via System variables with `env`. Don't commit this url... Bonsai ES HTTPS port is 443
+
 ## Data Ingestion
 
 

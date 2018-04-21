@@ -5,4 +5,10 @@ elasticsearch-5.2.1/*
 .#*
 *.log
 
+*.min.css
+
 \.idea/
+
+\.lein-env
+
+\.lein-repl-history
