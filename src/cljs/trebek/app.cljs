@@ -67,8 +67,8 @@
 (defn retrieve-question-set
   []
   (go (let [endpoint (if (= (search) "")
-                       "http://localhost:3000/api/v1.0/question/1"
-                       "http://localhost:3000/api/v1.0/search")
+                       "/api/v1.0/question/1"
+                       "/api/v1.0/search")
             response (<! (http/get endpoint
                                    {:query-params {:q (search) :from (index)}}))]
         ;; TODO: Look into a cleaner way to update the atom.
