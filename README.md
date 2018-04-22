@@ -27,22 +27,25 @@ You'll need the following installed in order to run Trebek:
 - Elasticsearch 5.2.x
 - elasticsearch-head
 - npm
-- grunt
 
 ## Development
 
 Configuration is stored in `env/dev/resources/config.edn` and `env/dev/prod/config.edn` for the respective profiles. These config files are tracked in source control... all sensitive config should be untracked and located elsewhere. See `yogthos/config` and `environ` for more information. With an uberjar, an additional config file can be passed in via something like the following snippet for the Java command: `-Dconfig="config.edn"`. This will merge and overwrite the default config values.
 
-First make sure elasticsearch (ES) is running, where ever and how ever they are located is up to you. If you were running one node on your local machine and not as a daemon, then something like `./elasticsearch-5.2.1/bin/elasticsearch` in the appropriate ES directory might suffice.
+First make sure elasticsearch (ES) is running, where ever and how ever they are located is up to you. If you were running one node on your local machine and not as a daemon, then something like `./elasticsearch-6.2.4/bin/elasticsearch` in the appropriate ES directory might suffice.
 
 It would be prudent to feed ES your data at this point. See the section on Data Ingestion.
+
+## ElasticSearch Head
+
+> Note: ES Head appears to not work with ES 6
 
 If you installed elasticsearch-head then the following commands are of use:
 
 ```
 cd ../elasticsearch-head
 npm install
-grunt server
+npm run start
 open http://localhost:9100/
 ```
 
@@ -87,3 +90,12 @@ The ES url can be accessed via System variables with `env`. Don't commit this ur
 - Super useful regarding flexbox `https://css-tricks.com/snippets/css/a-guide-to-flexbox/`
 - Reagent tutorial `http://lotabout.me/orgwiki/reagent.html`
 - js interop which i constantly forget `http://www.spacjer.com/blog/2014/09/12/clojurescript-javascript-interop/`
+
+## Trivia Sources
+ 
+- https://www.reddit.com/r/trivia/comments/3wzpvt/free_database_of_50000_trivia_questions/ 
+- https://www.reddit.com/r/datasets/comments/3j14vx/dataset_multiple_choice_trivia_questions_like/ 
+- https://www.reddit.com/r/datasets/comments/1uyd0t/200000_jeopardy_questions_in_a_json_file/ 
+- https://github.com/uberspot/OpenTriviaQA - weird formatting 
+- http://opentdb.com/ - API based rather than whole dataset
+
