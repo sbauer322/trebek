@@ -12,3 +12,5 @@ elasticsearch-*/
 \.lein-env
 
 \.lein-repl-history
+
+datasets/
