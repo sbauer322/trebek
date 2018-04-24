@@ -1,4 +1,6 @@
 {:dev true
- :database-url "http://localhost:9200/"
+ :es-url "http://localhost:9200/"
  :port "3000"
- :search-size "10"}
+ :search-size "10"
+ :mongo-url "127.0.0.1"
+ :mongo-port "27017"}

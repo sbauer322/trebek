@@ -1,4 +1,6 @@
 {:production true
- :database-url nil
+ :es-url nil
  :port "3000"
- :search-size "10"}
+ :search-size "10"
+ :mongo-url ""
+ :mongo-port ""}

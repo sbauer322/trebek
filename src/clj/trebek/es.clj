@@ -7,7 +7,7 @@
   []
   (if (:production env)
     (str (:bonsai-url env) ":" (:bonsai-port env) "/")
-    (:database-url env)))
+    (:es-url env)))
 
 (defn search-size
   []
