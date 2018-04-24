@@ -1,6 +1,6 @@
 (defproject trebek "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+  :description "A tiny trivia webapp to better learn React and Elasticsearch"
+  :url "https://github.com/sbauer322/trebek"
   :license {:name "MIT"
             :url "https://opensource.org/licenses/MIT"}
 
