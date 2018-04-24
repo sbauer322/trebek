@@ -2,7 +2,7 @@
 
 Trebek is a web application to help you study and hone your Jeopardy knowledge. A powerful search engine lets you test yourself against categories and relevant questions. Alternatively, if you leave the search field blank then Trebek will provide you with a random stream of questions.
 
-Developed for my personal amusement and to work with ElasticSearch, data was gathered from J-Archive, a fantastic resource.
+Developed to get a better understanding of [ElasticSearch](https://github.com/elastic/elasticsearch) and [React](https://github.com/facebook/react) ([Reagent](https://github.com/reagent-project/reagent)), data was gathered from [J-Archive](http://j-archive.com/).
  
 Currently, you will need to provide your own data. Do note that as long as your data is properly formatted, Trebek can be used as a quiz-like application for pretty much anything. The server should be robust enough to handle missing Jeopardy-data specific fields such as `show_number` and leave the corresponding field blank on the client.
 
@@ -21,6 +21,8 @@ There are a number of features that can be added to Trebek. Potential paths for 
  - Dataset Store
  - Allow content to be submitted by users
  - Modify to accept user-provided data formats (i.e., data without misc fields like `show_number`)
+ 
+ ![Trebek](./doc/trebek-2018-04-23.png)
 
 ## Prerequisites
 
@@ -103,26 +105,26 @@ curl -XPUT 'localhost:9200/trivia/_mapping/jeopardy' -d '{
   "jeopardy" : {
     "properties" : {
 	  "category": {
-	    "type": "string"
+	    "type": "text"
 	  },
 	  "air_date": {
 	    "type": "date",
 		"format": "YYYY-MM-DD"
       },
 	  "question": {
-	    "type": "string"
+	    "type": "text"
 	  },
 	  "value": {
-	    "type": "string"
+	    "type": "text"
       },
 	  "answer": {
-	    "type": "string"
+	    "type": "text"
       },
 	  "round": {
-	    "type": "string"
+	    "type": "text"
 	  },
 	  "show_number": {
-	    "type": "string"
+	    "type": "text"
       }
     }
   }
