@@ -18,8 +18,6 @@
 .color-secondary-2-3 { color: #1B2627 }
 .color-secondary-2-4 { color: #0C1516 }
 
-
-
 /* As RGBa codes */
 
 .rgba-primary-0 { color: rgba( 63, 73, 90,1) }	/* Main Primary color */
@@ -46,7 +44,7 @@
 
 .body-container {
     background-color: #9DABC5;
-    font-family: 'Helvetica Neue', Verdana, Helvetica, Arial, sans-serif;
+    font-family: 'Nunito', sans-serif;
     max-width: 960px;
     margin: 0 auto;
     -webkit-font-smoothing: antialiased;
